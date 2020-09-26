@@ -1,0 +1,10 @@
+
+body {
+    background-color: lightgrey; /* sets background color to light grey*/
+}
+h1 {
+    color: blue; /* sets headers to be blue */
+}
+p {
+    color: green; /* sets paragraph/body content to be green  */
+}
