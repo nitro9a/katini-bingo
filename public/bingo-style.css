@@ -1,0 +1,9 @@
+table {
+    text-align: center;
+    table-layout: fixed;
+    width: 100%;
+  }
+  
+  tr {
+    height: 18vw;
+  }
