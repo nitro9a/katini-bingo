@@ -23,10 +23,9 @@ app.listen(process.env.PORT || 5000)
 
 var userSchema = new mongoose.Schema({
      name: {
-       first: String,
-       last: { type: String, trim: true }
+       username: { type: String }
      },
-     password: { type: String, min: 8 }
+     password: { type: String }
    });
 
 var PUser = mongoose.model('PowerUsers', userSchema);
