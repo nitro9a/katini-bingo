@@ -1,7 +1,7 @@
 const express = require('express'); 
 const app = express();
-const http = require('http');
-const mongoose = require("mongoose");
+var http = require ('http');        
+    var mongoose = require ("mongoose"); 
 const uristring = process.env.KATINI_DB_URI || 'mongodb://localhost/HelloMongoose'
 const theport = process.env.PORT || 5000;
 
@@ -13,11 +13,11 @@ mongoose.connect(uristring, function (err, res) {
      }
    });
 
-// app.use(express.static('public'));
+app.use(express.static('public'));
 
-// app.get('/', (req, res) => {
-//      res.sendFile('index.html', {root: __dirname + '/public/'});
-// });
+app.get('/', (req, res) => {
+     res.sendFile('index.html', {root: __dirname + '/public/'});
+});
 
-// app.listen(process.env.PORT || 5000)
+app.listen(process.env.PORT || 5000)
 
