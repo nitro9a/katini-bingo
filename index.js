@@ -32,7 +32,7 @@ var PUser = mongoose.model('PowerUsers', userSchema);
 ...
 // Creating one user.
 var johndoe = new PUser ({
-name: { first: 'John', last: '  Doe   ' },
+name: { username: 'johndoe' },
 password: 'welcome123'
 });
 
