@@ -1,39 +1,52 @@
 const express = require('express'); 
-const app = express();
-const http = require ('http');        
+const bodyParser = require("body-parser");
+const user = require("./routes/user");
+const InitiateMongoServer = require("./config/db");
+
+// Initiate Mongo Server
+InitiateMongoServer();
+
+const app = express();  
+const PORT = process.env.PORT || 5000; 
+
 const mongoose = require ("mongoose"); 
-const uristring = process.env.KATINI_DB_URI || 'mongodb://localhost/HelloMongoose'
+const uristring = process.env.KATINI_DB_URI || 'mongodb://localhost/HelloMongoose';
 
-mongoose.connect(uristring, function (err, res) {
-     if (err) {
-     console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-     } else {
-     console.log ('Succeeded connected to: ' + uristring);
-     }
-   });
+// Middleware
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use(express.static('public'));
-
-app.get('/', (req, res) => {
-     res.sendFile('index.html', {root: __dirname + '/public/'});
+app.get("/", (req, res) => {
+  res.json({ message: "API Working" });
 });
 
-app.listen(process.env.PORT || 5000)
+/**
+ * Router Middleware
+ * Router - /user/*
+ * Method - *
+ */
+app.use("/user", user);
 
+app.listen(PORT, (req, res) => {
+  console.log(`Server Started at PORT ${PORT}`);
+});
 
-// var userSchema = new mongoose.Schema({
-//      username: { type: String },
-//      password: { type: String }
+// mongoose.connect(uristring, function (err, res) {
+//      if (err) {
+//      console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+//      } else {
+//      console.log ('Succeeded connected to: ' + uristring);
+//      }
 //    });
 
-// var PUser = mongoose.model('PowerUsers', userSchema);
 
-// // Creating one user.
-// var johndoe = new PUser ({
-// username: 'johndoe',
-// password: 'welcome123'
+
+
+//app.use(express.static('public'));
+
+// app.get('/', (req, res) => {
+//      res.sendFile('index.html', {root: __dirname + '/public/'});
 // });
 
-// // Saving it to the database.
-// johndoe.save(function (err) {if (err) console.log ('Error on save!')});
-
+// app.listen(process.env.PORT || 5000)
