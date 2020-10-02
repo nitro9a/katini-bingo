@@ -1,7 +1,7 @@
 const express = require('express'); 
 const app = express();
 const http = require('http');
-const mongoose - require("mongoose");
+const mongoose = require("mongoose");
 const uristring = process.env.KATINI_DB_URI || 'mongodb://localhost/HelloMongoose'
 const theport = process.env.PORT || 5000;
 
