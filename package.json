@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/nitro9a/heroku-static-template#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.10.7"
   },
   "engines": {
     "node": "14.4.0"
