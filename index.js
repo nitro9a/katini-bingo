@@ -1,7 +1,7 @@
 const express = require('express'); 
 const app = express();
-var http = require ('http');        
-    var mongoose = require ("mongoose"); 
+const http = require ('http');        
+const mongoose = require ("mongoose"); 
 const uristring = process.env.KATINI_DB_URI || 'mongodb://localhost/HelloMongoose'
 const theport = process.env.PORT || 5000;
 
@@ -20,4 +20,23 @@ app.get('/', (req, res) => {
 });
 
 app.listen(process.env.PORT || 5000)
+
+var userSchema = new mongoose.Schema({
+     name: {
+       first: String,
+       last: { type: String, trim: true }
+     },
+     password: { type: String, min: 8 }
+   });
+
+var PUser = mongoose.model('PowerUsers', userSchema);
+...
+// Creating one user.
+var johndoe = new PUser ({
+name: { first: 'John', last: '  Doe   ' },
+password: 'welcome123'
+});
+
+// Saving it to the database.
+johndoe.save(function (err) {if (err) console.log ('Error on save!')});
 
