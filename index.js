@@ -22,7 +22,6 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT || 5000)
 
 var userSchema = new mongoose.Schema({
-
      username: { type: String },
      password: { type: String }
    });
