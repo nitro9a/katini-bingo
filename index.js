@@ -18,18 +18,7 @@ app.get('/', (req, res) => {
      res.sendFile('index.html', {root: __dirname + '/public/'});
 });
 
-//app.listen(process.env.PORT || 5000)
-
-// import routes
-const authRoutes = require("./routes/auth");// route middlewares
-app.use("/api/user", authRoutes);
-app.listen(process.env.PORT || 5000, () => console.log("server is running..."));
-
-
-
-
-
-
+app.listen(process.env.PORT || 5000)
 
 
 // var userSchema = new mongoose.Schema({
