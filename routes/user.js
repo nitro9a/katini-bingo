@@ -85,8 +85,8 @@ router.post(
 router.post(
     "/login",
     [
-      check("email", "Please enter a valid email").isEmail(),
-      check("password", "Please enter a valid password").isLength({
+      check("email", "Please enter a valid email.").isEmail(),
+      check("password", "Please enter a valid password.").isLength({
         min: 6
       })
     ],
@@ -106,13 +106,13 @@ router.post(
         });
         if (!user)
           return res.status(400).json({
-            message: "User Not Exist"
+            message: "The user does not exist."
           });
   
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch)
           return res.status(400).json({
-            message: "Incorrect Password !"
+            message: "The password is incorrect."
           });
   
         const payload = {
@@ -156,7 +156,7 @@ router.get("/me", auth, async (req, res) => {
     const user = await User.findById(req.user.id);
     res.json(user);
   } catch (e) {
-    res.send({ message: "Error in Fetching user" });
+    res.send({ message: "Error Fetching User" });
   }
 });
 

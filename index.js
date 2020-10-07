@@ -24,9 +24,11 @@ const mongoose = require ("mongoose");
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('public'));
 
 app.get("/", (req, res) => {
   res.json({ message: "API Working" });
+  res.sendFile('index.html', {root: __dirname + '/public/'});
 });
 
 /**
@@ -45,7 +47,7 @@ app.listen(PORT, (req, res) => {
 
 
 
-//app.use(express.static('public'));
+// app.use(express.static('public'));
 
 // app.get('/', (req, res) => {
 //      res.sendFile('index.html', {root: __dirname + '/public/'});
