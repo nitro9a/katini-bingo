@@ -9,8 +9,13 @@
 <body>
     <h1>K'atini!</h1>
     <p>Welcome to K'atini!</p>
-    <db-form-field></db-form-field>
-    <script src="form_field.js"></script>
-    <a href='bingo.html'><button>Bingo</button></a>
+    <db-form-field error-message="This field is required." label="User Name" type="text"></db-form-field>    
+    <db-form-field error-message="This field is required." label="Email" type="text"></db-form-field>
+    <db-form-field error-message="This field is required." label="Password" type="text"></db-form-field>
+    <hr>
+    <h2>Demo</h2>
+    <button onclick="document.querySelector('db-form-field').invalid = !document.querySelector('db-form-field').invalid">Toggle "Name" field invalid state</button>
+    <script src="../src/components/form_field.js"></script>
+    <a href="bingo.html"><button>Bingo</button></a>
 </body>
 </html>
