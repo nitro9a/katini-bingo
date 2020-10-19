@@ -26,7 +26,9 @@ mongoose.connect(uristring, function (err, res) {
    });
 
 app.get("/", (req, res) => {
-  res.json({ message: "API Working" });
+
+  res.sendFile('index.html', {root: __dirname + '/public/'});
+  //res.json({ message: "API Working" });
 });
 
 /**
