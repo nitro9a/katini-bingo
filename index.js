@@ -26,9 +26,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
+mongoose.connect(uristring, function (err, res) {
+     if (err) {
+     console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+     } else {
+     console.log ('Succeeded connected to: ' + uristring);
+     }
+   });
+
+app.use(express.static('public'));
+
 app.get("/", (req, res) => {
-  res.json({ message: "API Working" });
+
   res.sendFile('index.html', {root: __dirname + '/public/'});
+  //res.json({ message: "API Working" });
 });
 
 /**
@@ -41,16 +52,3 @@ app.use("/user", user);
 app.listen(PORT, (req, res) => {
   console.log(`Server Started at PORT ${PORT}`);
 });
-
-
-
-
-
-
-// app.use(express.static('public'));
-
-// app.get('/', (req, res) => {
-//      res.sendFile('index.html', {root: __dirname + '/public/'});
-// });
-
-// app.listen(process.env.PORT || 5000)
