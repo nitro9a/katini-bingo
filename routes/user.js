@@ -37,14 +37,19 @@ router.post(
             password
         } = req.body;
         try {
-            let user = await User.findOne({
+            let userEmail = await User.findOne({
                 email
             });
-            if (user) {
+            let userUsername = await User.findOne({
+              username
+            });
+            if (userEmail || userUsername) {
                 return res.status(400).json({
                     msg: "User Already Exists"
                 });
-            }
+            
+              }
+            
 
             user = new User({
                 username,
@@ -70,9 +75,7 @@ router.post(
                 },
                 (err, token) => {
                     if (err) throw err;
-                    res.status(200).json({
-                        token
-                    });
+                    res.status(200).redirect("/login.html")
                 }
             );
         } catch (err) {
@@ -129,11 +132,10 @@ router.post(
           },
           (err, token) => {
             if (err) throw err;
-            res.status(200).json({
-              token
-            });
+            res.status(200).redirect("/bingo.html")
           }
         );
+
       } catch (e) {
         console.error(e);
         res.status(500).json({
