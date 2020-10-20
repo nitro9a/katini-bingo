@@ -12,5 +12,4 @@ function getval(cel) {
   } else if (cel.style.color == "red") {
     (cel.style.color = "")
   };
-
 }
